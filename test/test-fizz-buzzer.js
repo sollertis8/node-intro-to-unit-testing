@@ -6,26 +6,30 @@ const fizzBuzzer = require('../fizzBuzzer');
 // unit tests for our `fizzBuzzer` function
 describe('fizzBuzzer', function() {
     
-      // test the normal case
-      it('should return fizz-buzz, buzz, fizz, or a number', function() {
-        // range of normal inputs, including
-        // notable cases like negative answers
-        const normalCases = [
-          {a: 15, expected: 'fizz-buzz' || 'buzz' || 'fizz'},
-          {a: 3, expected: 'fizz' || 3},
-          {a: 5, expected: 'buzz' || 5 || 2},
-          {a: -15, expected: 'fizz-buzz' || 'buzz' || 'fizz'},
-          {a: -3, expected: 'fizz' || 3},
-          {a: -5, expected: 'buzz' || 5 || 2},
-          {a: 4, expected: 4}
-        ];
-        // for each set of inputs (a, b), `adder` should
-        // produce the expected value
-        normalCases.forEach(function(input) {
-          const answer = fizzBuzzer(input.a);
-          answer.should.equal(input.expected);
+    it('should return "fizz-buzz" for multiples of 15', function() {
+        [15, 30, 45, -15, -30, -45].forEach(function(input) {
+          fizzBuzzer(input).should.equal('fizz-buzz');
         });
       });
+    
+      it('should return "fizz" for multiples of 3', function() {
+        [3, 6, 9, 12,-3, -6, -12].forEach(function(input) {
+          fizzBuzzer(input).should.equal('fizz');
+        });
+      });
+    
+      it('should return "buzz" for multiples of 5', function() {
+        [5, 10, 20, -5, -10, -20].forEach(function(input) {
+          fizzBuzzer(input).should.equal('buzz');
+        });
+      });
+    
+      it('should return number if not mult of 3 or 5', function() {
+        [1, 2, 4, 7, 11].forEach(function(input) {
+          fizzBuzzer(input).should.equal(input);
+        });
+      });
+    
     
       it('should raise error if args not numbers', function() {
         // range of bad inputs where not both are numbers
